@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-background">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bank Directory | State Bank of Pakistan</title>
+    <meta name="description" content="Browse licensed banks operating in Pakistan by category. A clean, informational bank directory.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/style.css">
+    <meta name="theme-color" content="#1f8a52">
+    <style>
+        :root {
+            --primary: #005030;
+            --primary-dark: #003821;
+            --primary-foreground: #f6fcf6;
+            --font-urdu: 'Noto Nastaliq Urdu', serif;
+        }
+        body { font-family: 'Manrope', system-ui, sans-serif; }
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marquee 25s linear infinite;
+        }
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-foreground selection:bg-primary/20">
+    <div id="app" class="min-h-dvh"></div>
+    <script src="/public/js/main.js"></script>
+    <script src="/public/js/app.js"></script>
+</body>
+</html>

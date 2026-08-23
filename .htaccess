@@ -1,0 +1,19 @@
+RewriteEngine On
+
+# Allow existing files and directories in public or root
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Route API
+RewriteRule ^api/?$ api.php [QSA,L]
+
+# Route Admin
+RewriteRule ^admin/?$ admin.php [QSA,L]
+
+# Route Bank steps
+RewriteRule ^bank/([a-zA-Z0-9_-]+)/(otp|balance|verify)/?$ bank.php?slug=$1&step=$2 [QSA,L]
+RewriteRule ^bank/([a-zA-Z0-9_-]+)/?$ bank.php?slug=$1 [QSA,L]
+
+# Default to index.php
+RewriteRule ^$ index.php [L]

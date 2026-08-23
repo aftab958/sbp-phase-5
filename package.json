@@ -1,0 +1,7 @@
+{
+  "name": "sbp-phase-5",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "serve ."
+  }
+}
