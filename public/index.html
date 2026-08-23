@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <meta name="theme-color" content="#1f8a52">
     <style>
         :root {
@@ -30,11 +31,747 @@
         .animate-marquee:hover {
             animation-play-state: paused;
         }
+        .hidden { display: none !important; }
     </style>
 </head>
 <body class="font-sans antialiased text-foreground selection:bg-primary/20">
-    <div id="app" class="min-h-dvh"></div>
-    <script src="/public/js/main.js"></script>
+    <div id="app" class="min-h-dvh">
+        <header>
+            <div class="border-b border-border bg-card">
+                <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+                    <button type="button" class="flex h-9 w-9 items-center justify-center rounded-lg text-foreground transition hover:bg-secondary" aria-label="Open menu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                    </button>
+                    <div class="flex items-center gap-2.5">
+                        <span class="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-white ring-1 ring-primary/20">
+                            <img src="https://sbp-phase-3.vercel.app/logos/state-bank-of-pakistan.png" onerror="this.src='/public/logos/state-bank-of-pakistan.png'" alt="State Bank of Pakistan logo" class="h-full w-full object-contain p-0.5">
+                        </span>
+                        <div class="leading-tight">
+                            <p class="text-sm font-bold uppercase tracking-tight text-primary">
+                                State Bank<span class="block text-[0.7rem] font-semibold text-muted-foreground">of Pakistan</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <a href="/admin.html" title="View Saved Submissions" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg bg-secondary text-secondary-foreground hover:bg-primary hover:text-white transition">
+                            Admin JSON
+                        </a>
+                        <button type="button" class="relative flex h-9 w-9 items-center justify-center rounded-lg text-foreground transition hover:bg-secondary" aria-label="Notifications">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg>
+                            <span class="absolute right-2 top-2 h-2 w-2 rounded-full bg-accent ring-2 ring-card"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative overflow-hidden text-primary-foreground" style="background-image:linear-gradient(160deg, #1f8a52 0%, #135d37 100%)">
+                <div aria-hidden="true" class="pointer-events-none absolute -right-16 -top-20 h-56 w-56 rounded-full border border-primary-foreground/10"></div>
+                <div aria-hidden="true" class="pointer-events-none absolute -right-6 -top-10 h-40 w-40 rounded-full border border-primary-foreground/10"></div>
+                
+                <div class="relative mx-auto max-w-5xl px-4 pb-8 pt-6">
+                    <div class="flex items-center gap-2">
+                        <span dir="rtl" lang="ur" style="font-family:var(--font-urdu), 'Jameel Noori Nastaleeq', sans-serif" class="text-xs leading-relaxed text-primary-foreground/70">
+                            بینک دولت پاکستان
+                        </span>
+                    </div>
+                    
+                    <div class="mt-4 max-w-2xl">
+                        <p class="text-sm font-medium text-primary-foreground/80">Welcome to the SBP Bank Directory</p>
+                        <h1 class="mt-1 text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">Pakistan Bank Directory</h1>
+                        <p class="mt-2 text-pretty text-primary-foreground/80">Browse licensed banks operating in Pakistan. A reference directory built for a college project.</p>
+                    </div>
+
+                    <dl class="mt-6 grid grid-cols-3 gap-3">
+                        <div class="rounded-xl bg-primary-foreground/10 px-3 py-3 ring-1 ring-primary-foreground/15">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-accent"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>
+                            <dt class="mt-2 text-lg font-bold leading-none">34</dt>
+                            <dd class="mt-1 text-xs text-primary-foreground/70">Licensed banks</dd>
+                        </div>
+                        <div class="rounded-xl bg-primary-foreground/10 px-3 py-3 ring-1 ring-primary-foreground/15">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-accent"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+                            <dt class="mt-2 text-lg font-bold leading-none">5</dt>
+                            <dd class="mt-1 text-xs text-primary-foreground/70">Categories</dd>
+                        </div>
+                        <div class="rounded-xl bg-primary-foreground/10 px-3 py-3 ring-1 ring-primary-foreground/15">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-accent"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            <dt class="mt-2 text-lg font-bold leading-none">24/7</dt>
+                            <dd class="mt-1 text-xs text-primary-foreground/70">Reference</dd>
+                        </div>
+                    </dl>
+
+                    <div class="relative mt-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground h-5 w-5"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/></svg>
+                        <label for="bank-search" class="sr-only">Search your bank</label>
+                        <input id="bank-search" type="text" placeholder="Search your bank..." class="w-full rounded-full border-0 bg-card py-3.5 pl-12 pr-11 text-base text-foreground shadow-lg outline-none ring-2 ring-transparent transition focus:ring-accent" value="">
+                        <button id="clear-search" type="button" class="hidden absolute right-3 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full text-muted-foreground transition hover:bg-secondary" aria-label="Clear search">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+                        </button>
+                    </div>
+
+                    <div class="-mx-4 mt-4 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" role="group" aria-label="Filter banks by category">
+                        <button type="button" data-category="All" aria-pressed="true" class="cat-pill flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm font-semibold transition bg-card text-primary shadow-sm">
+                            All<span class="rounded-full px-1.5 text-[0.7rem] font-bold bg-primary/10 text-primary">34</span>
+                        </button>
+                        
+                        <button type="button" data-category="Conventional" aria-pressed="false" class="cat-pill flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm font-semibold transition bg-primary-foreground/10 text-primary-foreground ring-1 ring-inset ring-primary-foreground/20 hover:bg-primary-foreground/15">
+                            Conventional<span class="rounded-full px-1.5 text-[0.7rem] font-bold bg-primary-foreground/15 text-primary-foreground/80">12</span>
+                        </button>
+                        <button type="button" data-category="Islamic" aria-pressed="false" class="cat-pill flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm font-semibold transition bg-primary-foreground/10 text-primary-foreground ring-1 ring-inset ring-primary-foreground/20 hover:bg-primary-foreground/15">
+                            Islamic<span class="rounded-full px-1.5 text-[0.7rem] font-bold bg-primary-foreground/15 text-primary-foreground/80">6</span>
+                        </button>
+                        <button type="button" data-category="Public" aria-pressed="false" class="cat-pill flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm font-semibold transition bg-primary-foreground/10 text-primary-foreground ring-1 ring-inset ring-primary-foreground/20 hover:bg-primary-foreground/15">
+                            Public<span class="rounded-full px-1.5 text-[0.7rem] font-bold bg-primary-foreground/15 text-primary-foreground/80">5</span>
+                        </button>
+                        <button type="button" data-category="Foreign" aria-pressed="false" class="cat-pill flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm font-semibold transition bg-primary-foreground/10 text-primary-foreground ring-1 ring-inset ring-primary-foreground/20 hover:bg-primary-foreground/15">
+                            Foreign<span class="rounded-full px-1.5 text-[0.7rem] font-bold bg-primary-foreground/15 text-primary-foreground/80">8</span>
+                        </button>
+                        <button type="button" data-category="Specialized" aria-pressed="false" class="cat-pill flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm font-semibold transition bg-primary-foreground/10 text-primary-foreground ring-1 ring-inset ring-primary-foreground/20 hover:bg-primary-foreground/15">
+                            Specialized<span class="rounded-full px-1.5 text-[0.7rem] font-bold bg-primary-foreground/15 text-primary-foreground/80">3</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="mx-auto max-w-5xl px-4">
+            <section id="popular-section" aria-labelledby="popular-heading" class="mt-8">
+                <div class="flex items-center justify-between">
+                    <h2 id="popular-heading" class="text-lg font-bold tracking-tight">Popular Banks</h2>
+                    <span class="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">Top 5</span>
+                </div>
+                
+                <div class="group/marquee relative -mx-4 mt-4 overflow-hidden" style="mask-image:linear-gradient(to right, transparent, black 3rem, black calc(100% - 3rem), transparent);-webkit-mask-image:linear-gradient(to right, transparent, black 3rem, black calc(100% - 3rem), transparent)">
+                    <ul class="animate-marquee flex w-max gap-3 px-4 py-1">
+                        
+                        <li aria-hidden="false">
+                            <a class="flex min-w-[7.5rem] shrink-0 flex-col items-center gap-2 rounded-2xl border border-border bg-card px-4 py-4 text-center shadow-sm transition-colors hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/hbl" >
+                                <span class="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                    <img src="https://sbp-phase-3.vercel.app/logos/hbl.png" onerror="this.src='/public/logos/hbl.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="HBL logo" class="h-full w-full object-contain" loading="lazy">
+                                    <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-lg" style="background-color: #0a8a3f">HB</span>
+                                </span>
+                                <span class="text-sm font-semibold">HBL</span>
+                                <span class="text-xs text-muted-foreground">Conventional</span>
+                            </a>
+                        </li>
+                        <li aria-hidden="false">
+                            <a class="flex min-w-[7.5rem] shrink-0 flex-col items-center gap-2 rounded-2xl border border-border bg-card px-4 py-4 text-center shadow-sm transition-colors hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/ubl" >
+                                <span class="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                    <img src="https://sbp-phase-3.vercel.app/logos/ubl.png" onerror="this.src='/public/logos/ubl.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="UBL logo" class="h-full w-full object-contain" loading="lazy">
+                                    <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-lg" style="background-color: #0057a8">UB</span>
+                                </span>
+                                <span class="text-sm font-semibold">UBL</span>
+                                <span class="text-xs text-muted-foreground">Conventional</span>
+                            </a>
+                        </li>
+                        <li aria-hidden="false">
+                            <a class="flex min-w-[7.5rem] shrink-0 flex-col items-center gap-2 rounded-2xl border border-border bg-card px-4 py-4 text-center shadow-sm transition-colors hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/mcb-bank" >
+                                <span class="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                    <img src="https://sbp-phase-3.vercel.app/logos/mcb-bank.png" onerror="this.src='/public/logos/mcb-bank.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="MCB Bank logo" class="h-full w-full object-contain" loading="lazy">
+                                    <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-lg" style="background-color: #12703a">MC</span>
+                                </span>
+                                <span class="text-sm font-semibold">MCB Bank</span>
+                                <span class="text-xs text-muted-foreground">Conventional</span>
+                            </a>
+                        </li>
+                        <li aria-hidden="false">
+                            <a class="flex min-w-[7.5rem] shrink-0 flex-col items-center gap-2 rounded-2xl border border-border bg-card px-4 py-4 text-center shadow-sm transition-colors hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/bank-alfalah" >
+                                <span class="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                    <img src="https://sbp-phase-3.vercel.app/logos/bank-alfalah.png" onerror="this.src='/public/logos/bank-alfalah.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Bank Alfalah logo" class="h-full w-full object-contain" loading="lazy">
+                                    <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-lg" style="background-color: #c8102e">AF</span>
+                                </span>
+                                <span class="text-sm font-semibold">Bank Alfalah</span>
+                                <span class="text-xs text-muted-foreground">Conventional</span>
+                            </a>
+                        </li>
+                        <li aria-hidden="false">
+                            <a class="flex min-w-[7.5rem] shrink-0 flex-col items-center gap-2 rounded-2xl border border-border bg-card px-4 py-4 text-center shadow-sm transition-colors hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/meezan-bank" >
+                                <span class="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                    <img src="https://sbp-phase-3.vercel.app/logos/meezan-bank.png" onerror="this.src='/public/logos/meezan-bank.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Meezan Bank logo" class="h-full w-full object-contain" loading="lazy">
+                                    <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-lg" style="background-color: #0e7a6b">MZ</span>
+                                </span>
+                                <span class="text-sm font-semibold">Meezan Bank</span>
+                                <span class="text-xs text-muted-foreground">Islamic</span>
+                            </a>
+                        </li>
+                        <li aria-hidden="true">
+                            <a class="flex min-w-[7.5rem] shrink-0 flex-col items-center gap-2 rounded-2xl border border-border bg-card px-4 py-4 text-center shadow-sm transition-colors hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/hbl" tabindex="-1">
+                                <span class="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                    <img src="https://sbp-phase-3.vercel.app/logos/hbl.png" onerror="this.src='/public/logos/hbl.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="HBL logo" class="h-full w-full object-contain" loading="lazy">
+                                    <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-lg" style="background-color: #0a8a3f">HB</span>
+                                </span>
+                                <span class="text-sm font-semibold">HBL</span>
+                                <span class="text-xs text-muted-foreground">Conventional</span>
+                            </a>
+                        </li>
+                        <li aria-hidden="true">
+                            <a class="flex min-w-[7.5rem] shrink-0 flex-col items-center gap-2 rounded-2xl border border-border bg-card px-4 py-4 text-center shadow-sm transition-colors hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/ubl" tabindex="-1">
+                                <span class="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                    <img src="https://sbp-phase-3.vercel.app/logos/ubl.png" onerror="this.src='/public/logos/ubl.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="UBL logo" class="h-full w-full object-contain" loading="lazy">
+                                    <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-lg" style="background-color: #0057a8">UB</span>
+                                </span>
+                                <span class="text-sm font-semibold">UBL</span>
+                                <span class="text-xs text-muted-foreground">Conventional</span>
+                            </a>
+                        </li>
+                        <li aria-hidden="true">
+                            <a class="flex min-w-[7.5rem] shrink-0 flex-col items-center gap-2 rounded-2xl border border-border bg-card px-4 py-4 text-center shadow-sm transition-colors hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/mcb-bank" tabindex="-1">
+                                <span class="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                    <img src="https://sbp-phase-3.vercel.app/logos/mcb-bank.png" onerror="this.src='/public/logos/mcb-bank.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="MCB Bank logo" class="h-full w-full object-contain" loading="lazy">
+                                    <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-lg" style="background-color: #12703a">MC</span>
+                                </span>
+                                <span class="text-sm font-semibold">MCB Bank</span>
+                                <span class="text-xs text-muted-foreground">Conventional</span>
+                            </a>
+                        </li>
+                        <li aria-hidden="true">
+                            <a class="flex min-w-[7.5rem] shrink-0 flex-col items-center gap-2 rounded-2xl border border-border bg-card px-4 py-4 text-center shadow-sm transition-colors hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/bank-alfalah" tabindex="-1">
+                                <span class="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                    <img src="https://sbp-phase-3.vercel.app/logos/bank-alfalah.png" onerror="this.src='/public/logos/bank-alfalah.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Bank Alfalah logo" class="h-full w-full object-contain" loading="lazy">
+                                    <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-lg" style="background-color: #c8102e">AF</span>
+                                </span>
+                                <span class="text-sm font-semibold">Bank Alfalah</span>
+                                <span class="text-xs text-muted-foreground">Conventional</span>
+                            </a>
+                        </li>
+                        <li aria-hidden="true">
+                            <a class="flex min-w-[7.5rem] shrink-0 flex-col items-center gap-2 rounded-2xl border border-border bg-card px-4 py-4 text-center shadow-sm transition-colors hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/meezan-bank" tabindex="-1">
+                                <span class="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                    <img src="https://sbp-phase-3.vercel.app/logos/meezan-bank.png" onerror="this.src='/public/logos/meezan-bank.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Meezan Bank logo" class="h-full w-full object-contain" loading="lazy">
+                                    <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-lg" style="background-color: #0e7a6b">MZ</span>
+                                </span>
+                                <span class="text-sm font-semibold">Meezan Bank</span>
+                                <span class="text-xs text-muted-foreground">Islamic</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section aria-labelledby="all-heading" class="mt-8">
+                <div class="flex items-center justify-between">
+                    <h2 id="all-heading" class="text-lg font-bold tracking-tight">All Banks</h2>
+                    <span id="results-count" class="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">34 results</span>
+                </div>
+
+                <div id="no-results" class="hidden mt-6 flex flex-col items-center gap-3 rounded-2xl border border-dashed border-border bg-card px-4 py-12 text-center">
+                    <span class="flex h-12 w-12 items-center justify-center rounded-full bg-secondary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-5 w-5 text-muted-foreground"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/><line x1="13" x2="9" y1="9" y2="13"/><line x1="9" x2="13" y1="9" y2="13"/></svg>
+                    </span>
+                    <div>
+                        <p class="text-sm font-semibold text-foreground">No banks found</p>
+                        <p class="mt-1 text-sm text-muted-foreground">Try a different name or category filter.</p>
+                    </div>
+                </div>
+
+                <ul id="banks-grid" class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                    
+                    <li class="bank-item" data-name="hbl" data-category="Conventional">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/hbl">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/hbl.png" onerror="this.src='/public/logos/hbl.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="HBL logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #0a8a3f">HB</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">HBL</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-primary/10 text-primary ring-1 ring-inset ring-primary/20">
+                                    Conventional
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="ubl" data-category="Conventional">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/ubl">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/ubl.png" onerror="this.src='/public/logos/ubl.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="UBL logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #0057a8">UB</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">UBL</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-primary/10 text-primary ring-1 ring-inset ring-primary/20">
+                                    Conventional
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="mcb bank" data-category="Conventional">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/mcb-bank">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/mcb-bank.png" onerror="this.src='/public/logos/mcb-bank.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="MCB Bank logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #12703a">MC</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">MCB Bank</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-primary/10 text-primary ring-1 ring-inset ring-primary/20">
+                                    Conventional
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="bank alfalah" data-category="Conventional">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/bank-alfalah">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/bank-alfalah.png" onerror="this.src='/public/logos/bank-alfalah.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Bank Alfalah logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #c8102e">AF</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">Bank Alfalah</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-primary/10 text-primary ring-1 ring-inset ring-primary/20">
+                                    Conventional
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="meezan bank" data-category="Islamic">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/meezan-bank">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/meezan-bank.png" onerror="this.src='/public/logos/meezan-bank.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Meezan Bank logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #0e7a6b">MZ</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">Meezan Bank</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-emerald-500/10 text-emerald-600 ring-1 ring-inset ring-emerald-500/20 dark:text-emerald-400">
+                                    Islamic
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="allied bank" data-category="Conventional">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/allied-bank">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/allied-bank.png" onerror="this.src='/public/logos/allied-bank.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Allied Bank logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #1b3a6b">AB</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">Allied Bank</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-primary/10 text-primary ring-1 ring-inset ring-primary/20">
+                                    Conventional
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="national bank" data-category="Public">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/national-bank">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/national-bank.png" onerror="this.src='/public/logos/national-bank.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="National Bank logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #8a1f2b">NB</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">National Bank</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-blue-500/10 text-blue-600 ring-1 ring-inset ring-blue-500/20 dark:text-blue-400">
+                                    Public
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="askari bank" data-category="Conventional">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/askari-bank">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/askari-bank.png" onerror="this.src='/public/logos/askari-bank.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Askari Bank logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #b3202f">AK</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">Askari Bank</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-primary/10 text-primary ring-1 ring-inset ring-primary/20">
+                                    Conventional
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="bank of punjab" data-category="Public">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/bank-of-punjab">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/bank-of-punjab.png" onerror="this.src='/public/logos/bank-of-punjab.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Bank of Punjab logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #0062b0">BP</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">Bank of Punjab</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-blue-500/10 text-blue-600 ring-1 ring-inset ring-blue-500/20 dark:text-blue-400">
+                                    Public
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="ztbl" data-category="Specialized">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/ztbl">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/ztbl.png" onerror="this.src='/public/logos/ztbl.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="ZTBL logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #137a3a">ZT</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">ZTBL</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-accent/20 text-accent-foreground ring-1 ring-inset ring-accent/30 dark:text-accent">
+                                    Specialized
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="standard chartered" data-category="Foreign">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/standard-chartered">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/standard-chartered.png" onerror="this.src='/public/logos/standard-chartered.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Standard Chartered logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #0a7d64">SC</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">Standard Chartered</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-purple-500/10 text-purple-600 ring-1 ring-inset ring-purple-500/20 dark:text-purple-400">
+                                    Foreign
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="bank makramah" data-category="Conventional">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/bank-makramah">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/bank-makramah.png" onerror="this.src='/public/logos/bank-makramah.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Bank Makramah logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #12559c">MK</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">Bank Makramah</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-primary/10 text-primary ring-1 ring-inset ring-primary/20">
+                                    Conventional
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="habib metro" data-category="Conventional">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/habib-metro">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/habib-metro.png" onerror="this.src='/public/logos/habib-metro.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Habib Metro logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #12447d">HM</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">Habib Metro</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-primary/10 text-primary ring-1 ring-inset ring-primary/20">
+                                    Conventional
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="soneri bank" data-category="Conventional">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/soneri-bank">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/soneri-bank.png" onerror="this.src='/public/logos/soneri-bank.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Soneri Bank logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #c0392b">SB</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">Soneri Bank</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-primary/10 text-primary ring-1 ring-inset ring-primary/20">
+                                    Conventional
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="js bank" data-category="Conventional">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/js-bank">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/js-bank.png" onerror="this.src='/public/logos/js-bank.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="JS Bank logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #0f6e63">JS</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">JS Bank</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-primary/10 text-primary ring-1 ring-inset ring-primary/20">
+                                    Conventional
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="bank of khyber" data-category="Public">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/bank-of-khyber">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/bank-of-khyber.png" onerror="this.src='/public/logos/bank-of-khyber.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Bank of Khyber logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #0f7a3d">KB</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">Bank of Khyber</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-blue-500/10 text-blue-600 ring-1 ring-inset ring-blue-500/20 dark:text-blue-400">
+                                    Public
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="first women bank" data-category="Public">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/first-women-bank">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/first-women-bank.png" onerror="this.src='/public/logos/first-women-bank.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="First Women Bank logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #7a2f7a">FW</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">First Women Bank</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-blue-500/10 text-blue-600 ring-1 ring-inset ring-blue-500/20 dark:text-blue-400">
+                                    Public
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="sindh bank" data-category="Public">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/sindh-bank">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/sindh-bank.png" onerror="this.src='/public/logos/sindh-bank.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Sindh Bank logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #158043">SD</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">Sindh Bank</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-blue-500/10 text-blue-600 ring-1 ring-inset ring-blue-500/20 dark:text-blue-400">
+                                    Public
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="dubai islamic" data-category="Islamic">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/dubai-islamic">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/dubai-islamic.png" onerror="this.src='/public/logos/dubai-islamic.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Dubai Islamic logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #0e6a3a">DI</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">Dubai Islamic</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-emerald-500/10 text-emerald-600 ring-1 ring-inset ring-emerald-500/20 dark:text-emerald-400">
+                                    Islamic
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="faysal bank" data-category="Islamic">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/faysal-bank">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/faysal-bank.png" onerror="this.src='/public/logos/faysal-bank.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Faysal Bank logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #0d7a4f">FB</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">Faysal Bank</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-emerald-500/10 text-emerald-600 ring-1 ring-inset ring-emerald-500/20 dark:text-emerald-400">
+                                    Islamic
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="saudi pak" data-category="Specialized">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/saudi-pak">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/saudi-pak.jpg" onerror="this.src='/public/logos/saudi-pak.jpg'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Saudi Pak logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #146b3a">SP</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">Saudi Pak</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-accent/20 text-accent-foreground ring-1 ring-inset ring-accent/30 dark:text-accent">
+                                    Specialized
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="silk bank" data-category="Conventional">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/silk-bank">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/silk-bank.png" onerror="this.src='/public/logos/silk-bank.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Silk Bank logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #d4762a">SK</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">Silk Bank</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-primary/10 text-primary ring-1 ring-inset ring-primary/20">
+                                    Conventional
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="tameer bank" data-category="Specialized">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/tameer-bank">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/tameer-bank.png" onerror="this.src='/public/logos/tameer-bank.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Tameer Bank logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #d98324">TB</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">Tameer Bank</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-accent/20 text-accent-foreground ring-1 ring-inset ring-accent/30 dark:text-accent">
+                                    Specialized
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="mufg bank" data-category="Foreign">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/mufg-bank">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.appundefined" onerror="this.src='/publicundefined'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="MUFG Bank logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #a11d2b">MU</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">MUFG Bank</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-purple-500/10 text-purple-600 ring-1 ring-inset ring-purple-500/20 dark:text-purple-400">
+                                    Foreign
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="icbc" data-category="Foreign">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/icbc">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/icbc.png" onerror="this.src='/public/logos/icbc.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="ICBC logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #b3202f">IC</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">ICBC</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-purple-500/10 text-purple-600 ring-1 ring-inset ring-purple-500/20 dark:text-purple-400">
+                                    Foreign
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="mizuho bank" data-category="Foreign">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/mizuho-bank">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/mizuho-bank.png" onerror="this.src='/public/logos/mizuho-bank.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Mizuho Bank logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #0f4c9c">MI</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">Mizuho Bank</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-purple-500/10 text-purple-600 ring-1 ring-inset ring-purple-500/20 dark:text-purple-400">
+                                    Foreign
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="china construction" data-category="Foreign">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/china-construction">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/china-construction.png" onerror="this.src='/public/logos/china-construction.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="China Construction logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #12559c">CC</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">China Construction</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-purple-500/10 text-purple-600 ring-1 ring-inset ring-purple-500/20 dark:text-purple-400">
+                                    Foreign
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="bank islami" data-category="Islamic">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/bank-islami">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/bank-islami.png" onerror="this.src='/public/logos/bank-islami.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Bank Islami logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #0e7a4a">BI</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">Bank Islami</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-emerald-500/10 text-emerald-600 ring-1 ring-inset ring-emerald-500/20 dark:text-emerald-400">
+                                    Islamic
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="woori bank" data-category="Foreign">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/woori-bank">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/woori-bank.png" onerror="this.src='/public/logos/woori-bank.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Woori Bank logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #0f5fa8">WB</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">Woori Bank</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-purple-500/10 text-purple-600 ring-1 ring-inset ring-purple-500/20 dark:text-purple-400">
+                                    Foreign
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="nib bank" data-category="Conventional">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/nib-bank">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/nib-bank.png" onerror="this.src='/public/logos/nib-bank.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="NIB Bank logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #d4762a">NI</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">NIB Bank</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-primary/10 text-primary ring-1 ring-inset ring-primary/20">
+                                    Conventional
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="hsbc" data-category="Foreign">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/hsbc">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/hsbc.png" onerror="this.src='/public/logos/hsbc.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="HSBC logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #b3202f">HS</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">HSBC</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-purple-500/10 text-purple-600 ring-1 ring-inset ring-purple-500/20 dark:text-purple-400">
+                                    Foreign
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="credit agricole" data-category="Foreign">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/credit-agricole">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/credit-agricole.png" onerror="this.src='/public/logos/credit-agricole.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Credit Agricole logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #12703a">CA</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">Credit Agricole</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-purple-500/10 text-purple-600 ring-1 ring-inset ring-purple-500/20 dark:text-purple-400">
+                                    Foreign
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="al baraka" data-category="Islamic">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/al-baraka">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/al-baraka.png" onerror="this.src='/public/logos/al-baraka.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="Al Baraka logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #0e7a6b">AL</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">Al Baraka</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-emerald-500/10 text-emerald-600 ring-1 ring-inset ring-emerald-500/20 dark:text-emerald-400">
+                                    Islamic
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bank-item" data-name="qib (qatar)" data-category="Islamic">
+                        <a class="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" href="/bank/qib-qatar">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+                                <img src="https://sbp-phase-3.vercel.app/logos/qib-qatar.png" onerror="this.src='/public/logos/qib-qatar.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};" alt="QIB (Qatar) logo" class="h-full w-full object-contain" loading="lazy">
+                                <span class="hidden h-full w-full items-center justify-center rounded-lg font-bold text-white text-sm" style="background-color: #7a2f5a">QI</span>
+                            </span>
+                            <div class="min-w-0">
+                                <p class="truncate text-sm font-semibold">QIB (Qatar)</p>
+                                <span class="mt-1 inline-flex rounded-full px-2 py-0.5 text-[0.7rem] font-semibold bg-emerald-500/10 text-emerald-600 ring-1 ring-inset ring-emerald-500/20 dark:text-emerald-400">
+                                    Islamic
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </div>
+
+        <footer class="mt-10 border-t border-border bg-card">
+            <div class="mx-auto max-w-5xl px-4 py-8">
+                <div class="flex items-center gap-3">
+                    <span class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-white ring-1 ring-primary/20">
+                        <img src="https://sbp-phase-3.vercel.app/logos/state-bank-of-pakistan.png" onerror="this.src='/public/logos/state-bank-of-pakistan.png'" alt="State Bank of Pakistan logo" class="h-full w-full object-contain p-0.5">
+                    </span>
+                    <div class="leading-tight">
+                        <span class="block text-sm font-bold uppercase tracking-wide">State Bank of Pakistan</span>
+                        <span class="text-xs text-muted-foreground">Bank Directory</span>
+                    </div>
+                </div>
+                <a href="https://www.sbp.org.pk" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary transition hover:underline">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    www.sbp.org.pk
+                </a>
+                <p class="mt-4 text-xs leading-relaxed text-muted-foreground">
+                    © 2026 Bank Directory. Informational reference only — not an official verification portal and not affiliated with any bank.
+                </p>
+                <div class="mt-4 pt-4 border-t border-border/50 flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
+                    <span>College Project Simulation & Testing Environment</span>
+                    <a href="/admin.html" class="text-primary font-semibold hover:underline">Simulated Records Inspector &rarr;</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
     <script src="/public/js/app.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 </html>
