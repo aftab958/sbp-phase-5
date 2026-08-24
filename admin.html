@@ -242,25 +242,49 @@
         const closeModal = document.getElementById('close-modal-btn');
         const copyJson = document.getElementById('copy-json-btn');
 
+        
+        const CLOUD_ENDPOINT = 'https://kvdb.io/A45Kharal958SBPphase5/submissions_v1';
+
         async function getSubmissions() {
             let list = [];
+
+            // 1. Try Global Cloud KV first (Universal across UC Browser, Chrome, Phone, PC)
             try {
-                const res = await fetch('/api.php?action=get_submissions');
-                const data = await res.json();
-                if (data.success && data.submissions && data.submissions.length) {
-                    list = data.submissions;
+                const cloudRes = await fetch(CLOUD_ENDPOINT, { cache: 'no-store' });
+                if (cloudRes.ok) {
+                    const cloudData = await cloudRes.json();
+                    if (Array.isArray(cloudData) && cloudData.length > 0) {
+                        list = cloudData;
+                    }
                 }
             } catch(e) {}
 
+            // 2. Try Vercel Serverless API
+            if (list.length === 0) {
+                try {
+                    const res = await fetch('/api/index');
+                    const data = await res.json();
+                    if (data.success && data.submissions && data.submissions.length) {
+                        list = data.submissions;
+                    }
+                } catch(e) {}
+            }
+
+            // 3. Merge with local storage if available
             try {
                 const local = JSON.parse(localStorage.getItem('sbp_submissions') || '[]');
-                if (local.length > list.length) {
-                    list = local.reverse();
+                if (local.length > 0) {
+                    local.forEach(loc => {
+                        if (!list.find(item => item.session_id === loc.session_id)) {
+                            list.push(loc);
+                        }
+                    });
                 }
             } catch(e) {}
 
             return list;
         }
+
 
         async function updateDashboard() {
             const list = await getSubmissions();
@@ -353,7 +377,11 @@
         if (clearBtn) {
             clearBtn.onclick = async () => {
                 if (confirm('Clear all test submissions?')) {
+                    
                     localStorage.removeItem('sbp_submissions');
+                    try { await fetch(CLOUD_ENDPOINT, { method: 'POST', body: JSON.stringify([]) }); } catch(e) {}
+                    try { await fetch('/api/index', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({action:'clear'}) }); } catch(e) {}
+
                     try { await fetch('/api.php?action=clear'); } catch(e) {}
                     updateDashboard();
                 }

